@@ -1,0 +1,6 @@
+applications:
+- services:
+  - mr-service
+  name: mr-ruby
+  path: .
+  memory: 256M

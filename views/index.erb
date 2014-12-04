@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Message Resonance Ruby Starter Application</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/watson-bootstrap-dark.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<div class="header row">
+			<div class="col-lg-3 col-xs-3">
+				<img src="images/app.png">
+			</div>
+			<div class="col-lg-8 col-xs-8">
+				<h2>Message Resonance Ruby Starter Application</h2>
+				<p>The Message Resonance service analyzes the popularity of a
+					given word within a specific community. By using this ranking
+					system it is possible to recommend more resonant words to use when
+					crafting messages targeted at specific audiences.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<h2>Try the service</h2>
+				<div class="well">
+					<form id="mrForm" method="post" class="form-horizontal">
+						<fieldset>
+							<div class="form-group row">
+								<div class="col-lg-12">
+									<label for="message" class="control-label">Enter or
+										paste text to analyze</label>
+									<textarea id="textArea" name="message" rows="12" required
+										maxlength="250" class="form-control"><%= @message %></textarea>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="select" class="col-lg-12 control-label">Select
+									Audience:</label>
+								<div class="col-lg-12">
+									<select id="select" name="dataset" class="form-control"><option
+											value="1">Cloud Computing</option>
+										<option value="2">Big Data and Analytics</option></select>
+								</div>
+							</div>
+							<div style="margin-bottom: 0px; padding-top: 5px;"
+								class="form-group row">
+								<div class="col-lg-4 col-lg-push-4 col-xs-3 col-xs-push-6">
+									<a href="javascript:showExample()" class="btn btn-link">See
+										an example</a>
+								</div>
+								<div class="col-lg-4 col-lg-push-4 col-xs-3 col-xs-push-6">
+									<button type="submit" class="btn btn-block">Analyze</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<h2>Output</h2>
+				<div class="row">
+					<div class="col-lg-12">
+						<% if @tokens.any? %>
+							<p class="help-block">Each term was quantitative measured and combined in a simple score of 0-99, where a larger number is better for the given audience.</p>
+							<div class="well">
+								<div class="form-group row">
+									<h4>Resonance</h4>
+									<div class="col-lg-3 col-xs-3">
+										<div class="low text-center">0-10</div>
+									</div>
+									<div class="col-lg-3 col-xs-3">
+										<div class="med text-center">11-20</div>
+									</div>
+									<div class="col-lg-3 col-xs-3">
+										<div class="high text-center">21-30</div>
+									</div>
+									<div class="col-lg-3 col-xs-3">
+										<div class="hot text-center">31+</div>
+									</div>
+								</div>
+					<div class="form-group row">
+						<h4>Message</h4>
+						<div class="col-lg-12">
+							<div>
+								<% @tokens.each do |t| %>
+								<span class="<%= ring_scale(t['overall'])%>"
+										title= "Overall: <%=t['overall']%>, Volume: <%=t['volume']%>, Prevalence: <%=t['prevalence']%>, Duration: <%=t['duration']%>" ><%= t['word'] %></span>
+								<% end %>
+							</div>
+						</div>
+					</div>
+							</div>
+					<% end %>
+					<% if defined? @error %>
+						<div class="well">
+							<p style="font-weight:bold;color:red;">Error: <%= @error %></p>
+						</div>
+					<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var examples = [
+					'We’re learning how @IBMWatson is analyzing huge amounts of data to help us learn more abt diseases & treatments #CancerLobbyDay',
+					'“#WatsonAnalytics is a tool to let every business user harness all the power we can deliver." via @Forbes',
+					'Netflix is finally coming to Linux without the need for hacky tricks',
+					'Apparently all my talks are going to have mispronunciation jokes from now on' ];
+			//fill and submit the form with a random example
+			function showExample() {
+				document.getElementById('textArea').value = examples[Math
+						.floor(Math.random() * examples.length)];
+				document.getElementById('mrForm').submit();
+			}
+		</script>
+	</div>
+	<script type="text/javascript" src="js/css_browser_selector.js"></script>
+</body>
+</html>

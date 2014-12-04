@@ -1,0 +1,40 @@
+/* style.css
+ * This file provides css styles.
+ */
+.low {
+	color: #AAAAAA;
+	cursor: pointer;
+}
+.med {
+	color: #8CC63F;
+	cursor: pointer;
+}
+.high {
+	color: #004266;
+	cursor: pointer;
+}
+.hot {
+	color: #00B2EF;
+	cursor: pointer;
+}
+
+.text-center {
+	text-align: center;
+	cursor: pointer;
+}
+
+.low.text-center {
+	border: 1px solid #AAAAAA;
+}
+
+.med.text-center {
+	border: 1px solid #8CC63F;
+}
+
+.high.text-center {
+	border: 1px solid #004266;
+}
+
+.hot.text-center {
+	border: 1px solid #00B2EF;
+}
