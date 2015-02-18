@@ -2,6 +2,10 @@
 
   The IBM Watson [Message Resonance][message_resonance] analyzes draft content and scores how well it is likely to be received by a specific target audience. This analysis is based on content that has been written by the target audience itself, such as fans of a specific sports team or new parents. Today, analysis can be done against datasets from people active in cloud computing or related discussions, but future versions will let users provide their own community data.
 
+Give it a try! Click the button below to fork into IBM DevOps Services and deploy your own copy of this application on Bluemix.
+
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/mr-ruby.git)
+
 ## Getting Started
 
 1. Create a Bluemix Account
