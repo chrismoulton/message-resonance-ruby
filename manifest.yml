@@ -1,6 +1,6 @@
 ---
 declared-services:
-- mr-service:
+  mr-service:
     label: message_resonance
     plan: message_resonance_free_plan
 applications:
